@@ -1,3 +1,6 @@
 [submodule "vim/pack/galiaga/start/vim-airline"]
 	path = vim/pack/galiaga/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
+[submodule "vim/pack/galiaga/start/nerdtree"]
+	path = vim/pack/galiaga/start/nerdtree
+	url = https://github.com/preservim/nerdtree.git
