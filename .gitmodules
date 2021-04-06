@@ -4,3 +4,6 @@
 [submodule "vim/pack/galiaga/start/nerdtree"]
 	path = vim/pack/galiaga/start/nerdtree
 	url = https://github.com/preservim/nerdtree.git
+[submodule "vim/pack/galiaga/start/vim-airline-themes"]
+	path = vim/pack/galiaga/start/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes.git
