@@ -7,3 +7,6 @@
 [submodule "vim/pack/galiaga/start/vim-airline-themes"]
 	path = vim/pack/galiaga/start/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes.git
+[submodule "vim/pack/galiaga/opt/emmet-vim"]
+	path = vim/pack/galiaga/opt/emmet-vim
+	url = https://github.com/mattn/emmet-vim.git
