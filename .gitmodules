@@ -10,3 +10,6 @@
 [submodule "vim/pack/galiaga/opt/emmet-vim"]
 	path = vim/pack/galiaga/opt/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
+[submodule "vim/pack/galiaga/opt/vim-markdown-preview"]
+	path = vim/pack/galiaga/opt/vim-markdown-preview
+	url = https://github.com/JamshedVesuna/vim-markdown-preview.git
