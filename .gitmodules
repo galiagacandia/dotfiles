@@ -10,3 +10,15 @@
 [submodule "vim/pack/galiaga/opt/emmet-vim"]
 	path = vim/pack/galiaga/opt/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
+[submodule "vim/pack/deoplete/start/deoplete.nvim"]
+	path = vim/pack/deoplete/start/deoplete.nvim
+	url = https://github.com/Shougo/deoplete.nvim
+[submodule "vim/pack/deoplete/start/nvim-yarp"]
+	path = vim/pack/deoplete/start/nvim-yarp
+	url = https://github.com/roxma/nvim-yarp
+[submodule "vim/pack/deoplete/start/vim-hug-neovim-rpc"]
+	path = vim/pack/deoplete/start/vim-hug-neovim-rpc
+	url = https://github.com/roxma/vim-hug-neovim-rpc
+[submodule "vim/pack/deoplete/start/LanguageClient-neovim"]
+	path = vim/pack/deoplete/start/LanguageClient-neovim
+	url = https://github.com/autozimu/LanguageClient-neovim.git
