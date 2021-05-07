@@ -1,0 +1,4 @@
+# 1. Crea el undo dir cuando es requerido
+# 2. Previene el commit accidental de los archivos de cache de VIM
+*
+!.gitignore
