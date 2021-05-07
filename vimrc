@@ -16,6 +16,12 @@ set nowrap			" no parta lineas largas
 set number			" muestra los numeros de linea
 set showmatch			" resalta los parentesis y brackets que coincidan
 
+" Atajos para el cambio entre buffers
+map <C-N> :bnext<CR>
+map <C-P> :bprev<CR>
+imap <C-N> <Esc>:bnext<CR>i
+imap <C-P> <Esc>:bprev<CR>i
+
 " La numeracion relativa es muy util. Sin embargo, se habilita un switch para los
 " numeros relativos. Esto se realiza con F5.
 nmap <F5> :set invrelativenumber<CR>
