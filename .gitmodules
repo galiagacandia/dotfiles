@@ -10,3 +10,6 @@
 [submodule "vim/pack/galiaga/opt/emmet-vim"]
 	path = vim/pack/galiaga/opt/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
+[submodule "vim/pack/galiaga/start/dadbod"]
+	path = vim/pack/galiaga/start/dadbod
+	url = https://tpope.io/vim/dadbod.git
