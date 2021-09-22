@@ -16,11 +16,22 @@ set nowrap			" no parta lineas largas
 set number			" muestra los numeros de linea
 set showmatch			" resalta los parentesis y brackets que coincidan
 
+" Configuracion de identado
+set autoindent			" Siempre activo
+
+" Configuracion de la codificacion de archivos
+set encoding=utf-8
+set backspace=indent,eol,start	" backspace siempre funciona en el modo de insercion
+set hidden
+
 " Atajos para el cambio entre buffers
 map <C-N> :bnext<CR>
 map <C-P> :bprev<CR>
 imap <C-N> <Esc>:bnext<CR>i
 imap <C-P> <Esc>:bprev<CR>i
+
+" La tecla mapleader
+let mapleader=","
 
 " La numeracion relativa es muy util. Sin embargo, se habilita un switch para los
 " numeros relativos. Esto se realiza con F5.
