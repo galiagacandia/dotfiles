@@ -6,4 +6,5 @@ let g:LanguageClient_serverCommands = {
     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
     \ 'rust': ['rls'],
     \ 'sql': ['sql-language-server','up','--method','stdio'],
+    \ 'java': ['/usr/local/bin/jdtls', '-data', getcwd()],
     \ }
