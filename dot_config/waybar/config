@@ -1,0 +1,109 @@
+{
+  "layer": "top",
+  "position": "top",
+  "mod": "dock",
+
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+  "modules-center": ["clock", "mpris"],
+  "modules-right": [
+    "custom/media_prev",
+    "custom/media_play",
+    "custom/media_next",
+    "custom/media_info",
+    "pulseaudio",
+    "network",
+    "cpu",
+    "memory",
+    "tray"
+  ],
+
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "all-outputs": true,
+    "active-only": false,
+    "persistent-workspaces": {
+      "DP-1": [1,2,3,4,5],
+      "DP-2": [6,7,8,9,10]
+    }
+  },
+
+  "hyprland/window": {
+    "format": "  {title}",
+    "separate-outputs": true,
+    "max-length": 40
+  },
+
+  "clock": {
+    "format": "{:%H:%M  |  %a, %b %d}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+
+  "mpris": {
+    "format": "{player_icon} {dynamic}",
+    "format-paused": "{status_icon} <i>{dynamic}</i>",
+    "dynamic-order": ["title", "artist"],
+    "dynamic-len": 40,
+    "player-icons": {
+        "default": "🎵",
+        "amberol": "📻"
+    },
+    "status-icons": {
+        "paused": "⏸"
+    },
+    // Filtramos para que escuche explícitamente a Amberol si tienes otras apps abiertas
+    "ignored-players": ["firefox", "chrome", "brave"]
+  },
+
+  "custom/media_prev": {
+    "exec": "echo '⏮'",
+    "exec-if": "playerctl status 2>/dev/null",
+    "interval": 2,
+    "on-click": "playerctl previous"
+  },
+
+  "custom/media_play": {
+    "exec": "playerctl --player=%any status 2>/dev/null | sed 's/Playing/⏸/;s/Paused/⏯/' || echo '⏹'",
+    "exec-if": "playerctl --list-all 2>/dev/null",
+    "interval": 5, // Un intervalo largo solo de respaldo
+    "format": "{}",
+    "on-click": "playerctl play-pause"
+  },
+
+  "custom/media_next": {
+    "exec": "echo '⏭'",
+    "exec-if": "playerctl status 2>/dev/null",
+    "interval": 2,
+    "on-click": "playerctl next"
+  },
+
+  "custom/media_info": {
+    "exec": "playerctl --player=%any metadata --format '{\"text\":\"{{artist}} - {{title}} {{duration(position)}}/{{duration(mpris:length)}}\",\"tooltip\":\"{{playerName}}\"}' --follow 2>/dev/null",
+    "return-type": "json",
+    "max-length": 60
+  },
+
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "  Muted",
+    "format-icons": {
+      "default": ["", "", ""]
+    },
+    "on-click": "pavucontrol"
+  },
+
+  "network": {
+    "format-wifi": " {essid}",
+    "format-ethernet": "󰈀"
+  },
+
+  "memory": {
+    "format": "󰍛  {used:0.1f}GB",
+    "tooltip": true,
+    "interval": 10
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10
+  }
+}

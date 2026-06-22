@@ -1,0 +1,43 @@
+# Conexión con MPD
+mpd_host = "127.0.0.1"
+mpd_port = "6600"
+mpd_music_dir = "~/Music"
+
+# Visualizador de Audio (Conectado al FIFO de MPD)
+visualizer_data_source = "/tmp/mpd.fifo"
+visualizer_output_name = "Visualizer"
+visualizer_in_stereo = "yes"
+visualizer_type = "spectrum"
+visualizer_look = "●┃"
+visualizer_color = "cyan,magenta,blue"
+
+# Interfaz y Estilo (Moderna y Limpia)
+song_list_format = "{$7%a - }{%t}|{$8%f}"
+song_status_format = "{{%a - %t}}|{{%f}}"
+song_library_format = "{%t}|{%f}"
+
+alternative_header_first_line_format = "$0$1$5 {%t} $9"
+alternative_header_second_line_format = "$0$1$6 {%a} $9"
+current_item_prefix = "$(cyan)$r"
+current_item_suffix = "$/r$(end)"
+
+# Opciones de visualización
+playlist_display_mode = "columns"
+browser_display_mode = "columns"
+search_engine_display_mode = "columns"
+autocenter_mode = "yes"
+#centered_bounds = "yes"
+user_interface = "alternative"
+media_library_primary_tag = "album_artist"
+
+# Barras y progreso
+progressbar_look = "─⊙─"
+progressbar_color = "black"
+progressbar_elapsed_color = "cyan"
+header_visibility = "yes"
+statusbar_visibility = "yes"
+titles_visibility = "yes"
+
+# Misceláneo
+discard_colors_if_item_is_selected = "yes"
+allow_for_physical_item_deletion = "no"
