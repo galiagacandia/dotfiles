@@ -95,7 +95,7 @@ chezmoi diff            # diff textual (qué haría apply)
 
 # 3. guardar en el repo
 chezmoi re-add                            # todos los archivos ya gestionados que cambiaron
-chezmoi re-add ~/.config/hypr/input.conf  # o solo uno
+chezmoi re-add ~/.config/hypr/input.lua   # o solo uno
 chezmoi add ~/.config/mi-app/config       # archivo NUEVO que quieres versionar
 
 # 4. commit + push
@@ -114,7 +114,7 @@ chezmoi managed      # qué archivos gestiona (absolutos con --path-style absolu
 chezmoi unmanaged    # qué hay en $HOME que NO gestiona
 chezmoi doctor       # chequeo de salud
 chezmoi source-path  # ruta del repo
-chezmoi target-path dot_config/hypr/input.conf   # ruta destino de un archivo del source
+chezmoi target-path dot_config/hypr/input.lua    # ruta destino de un archivo del source
 chezmoi forget ~/.config/algo                    # dejar de gestionar (no borra el archivo)
 ```
 
@@ -137,7 +137,7 @@ Nunca se mueve; si te equivocas, se crea otro tag nuevo.
 |---|---|---|
 | `v0-2026-06-22` | `e20148f` | Era 0: lo que ya estaba en el repo (junio) |
 | `v1-2026-10-27` | (snapshot octubre) | Era 1: estado real antes del pulido |
-| `v2-AAAA-MM-DD` | (futuro) | Era 2: entorno pulido, creado al fusionar la rama |
+| `v2-2026-10-27` | `pulido-entorno` | Era 2: Hyprland de `.conf` a Lua |
 
 ### Crear
 
@@ -145,7 +145,7 @@ Nunca se mueve; si te equivocas, se crea otro tag nuevo.
 cd "$(chezmoi source-path)"
 
 # tag anotado sobre el commit actual
-git tag -a v2-2026-12-01 -m "Era 2: entorno pulido"
+git tag -a v2-2026-12-01 -m "Era 3: entorno pulido"
 
 # tag anotado sobre un commit concreto
 git tag -a v0-2026-06-22 -m "Era 0" e20148f
@@ -174,7 +174,7 @@ git diff v0-2026-06-22 v1-2026-10-27 -- dot_config/hypr/
 Ver un archivo de una era sin cambiar nada:
 
 ```bash
-git show v1-2026-10-27:dot_config/hypr/input.conf
+git show v1-2026-10-27:dot_config/hypr/input.conf   # antes de la era Lua
 ```
 
 ### Cargar / restaurar una era en el $HOME
@@ -237,8 +237,8 @@ git push -u origin pulido-entorno   # publicar la rama
 
 # al terminar, fusionar en main dejando el punto de unión visible
 git switch main
-git merge --no-ff pulido-entorno -m "Era 2: entorno pulido"
-git tag -a v2-AAAA-MM-DD -m "Era 2: entorno pulido"
+git merge --no-ff pulido-entorno -m "Era 3: entorno pulido"
+git tag -a v3-AAAA-MM-DD -m "Era 3: entorno pulido"
 git push origin main --follow-tags
 ```
 
@@ -360,7 +360,7 @@ Después de esto ya hay agente: git funciona sin la variable.
 - **Columna 2**: diferencia entre lo que hay ahora y lo que dice el repo -> "¿qué
   haría `apply`?".
 
-`MM .config/hypr/bindings.conf` = lo editaste a mano Y además el repo no lo tiene así:
+`MM .config/hypr/bindings.lua` = lo editaste a mano Y además el repo no lo tiene así:
 un `apply` lo pisaría. Solución: `chezmoi re-add`.
 
 ### Casos típicos
@@ -422,7 +422,7 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"   # si usas el agente
 git push -u origin main
 git push -u origin pulido-entorno
 git push origin --tags
-git ls-remote origin          # main, pulido-entorno, v0-2026-06-22, v1-2026-10-27
+git ls-remote origin          # main, pulido-entorno, v0-2026-06-22, v1-2026-10-27, v2-2026-10-27
 ```
 
 ---

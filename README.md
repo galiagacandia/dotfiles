@@ -13,7 +13,7 @@ Configuración personal de mi entorno Linux, gestionada con
 
 | Área | Qué incluye |
 |---|---|
-| Hyprland | `hyprland.conf` + `monitors`, `input`, `bindings`, `looknfeel`, `autostart`, `workspace`, `windowrules`, `envs`, `hyprpaper` |
+| Hyprland | **Lua**: `hyprland.lua` (disparador) + `main`, `monitors`, `input`, `bindings`, `looknfeel`, `autostart`, `workspace`, `windowrules`, `envs`; `hyprpaper.conf` aparte |
 | Waybar | `config` + `style.css` (workspaces 1-5 en DP-1, 6-10 en DP-2) |
 | Neovim | LazyVim con extras (dap, neo-tree, java, markdown, terraform, project) |
 | wlogout | layout, iconos y css |
@@ -50,7 +50,7 @@ chezmoi update      # git pull + apply
 
 ```bash
 # 1. editar el config real, como siempre
-#    (~/.config/hypr/bindings.conf, ~/.config/waybar/config, ...)
+#    (~/.config/hypr/bindings.lua, ~/.config/waybar/config, ...)
 
 chezmoi status      # qué está desfasado
 chezmoi diff        # qué haría apply
@@ -72,7 +72,9 @@ Cada era es un tag inmutable `vN-AAAA-MM-DD`:
 |---|---|---|
 | 0 | `v0-2026-06-22` | configuración base importada al repo |
 | 1 | `v1-2026-10-27` | estado real antes del pulido |
-| 2 | `v2-AAAA-MM-DD` | entorno pulido (rama `pulido-entorno`) |
+| 2 | `v2-2026-10-27` | Hyprland de `.conf` a Lua (rama `pulido-entorno`) |
+
+Detalle de la migración a Lua: [`docs/hyprland-lua.md`](docs/hyprland-lua.md).
 
 Usar una era antigua:
 
