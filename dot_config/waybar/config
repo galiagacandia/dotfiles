@@ -4,7 +4,7 @@
   "mod": "dock",
 
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
-  "modules-center": ["clock", "mpris"],
+  "modules-center": ["clock"],
   "modules-right": [
     "custom/media_prev",
     "custom/media_play",
@@ -36,22 +36,6 @@
   "clock": {
     "format": "{:%H:%M  |  %a, %b %d}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-  },
-
-  "mpris": {
-    "format": "{player_icon} {dynamic}",
-    "format-paused": "{status_icon} <i>{dynamic}</i>",
-    "dynamic-order": ["title", "artist"],
-    "dynamic-len": 40,
-    "player-icons": {
-        "default": "🎵",
-        "amberol": "📻"
-    },
-    "status-icons": {
-        "paused": "⏸"
-    },
-    // Filtramos para que escuche explícitamente a Amberol si tienes otras apps abiertas
-    "ignored-players": ["firefox", "chrome", "brave"]
   },
 
   "custom/media_prev": {
