@@ -55,7 +55,8 @@ hyprctl -j binds | jq length                              # 62 en la era 2
 ## Prohibiciones
 
 - **No borrar ni renombrar** archivos sin permiso explícito del usuario.
-- `~/.config/hypr/legacy/` es el respaldo de los `.conf`: no se toca.
+- `legacy/` del repo es el archivo histórico (no se despliega): waybar, wlogout,
+  satty, hyprpaper y los `.conf` de Hyprland. No se borra ni se toca.
 - `hyprpaper.conf` y `hyprlauncher.conf` **no** son configuración de Hyprland.
 - No commitear secretos, llaves ni passphrases.
 - No hacer `chezmoi apply` sin revisar antes `chezmoi diff`.
@@ -106,8 +107,8 @@ Servidor MCP configurado en `opencode.json` con proyecto `dotfiles`
 
 ```
 dot_config/hypr/            hyprland.lua (disparador) + main.lua + secciones .lua
-dot_config/hypr/legacy/     .conf originales (respaldo, inertes)
-dot_config/waybar/          config + style.css
+dot_config/caelestia/       shell.json del escritorio
+legacy/config/              archivo histórico (waybar, wlogout, satty, hypr, .conf)
 dot_config/nvim/            LazyVim
 docs/                       guías (ignoradas por chezmoi)
 opencode.json               config de OpenCode para este repo (ignorada)

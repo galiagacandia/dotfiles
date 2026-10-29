@@ -13,13 +13,12 @@ Configuración personal de mi entorno Linux, gestionada con
 
 | Área | Qué incluye |
 |---|---|
-| Hyprland | **Lua**: `hyprland.lua` (disparador) + `main`, `monitors`, `input`, `bindings`, `looknfeel`, `autostart`, `workspace`, `windowrules`, `envs`; `hyprpaper.conf` aparte |
-| Waybar | `config` + `style.css` (workspaces 1-5 en DP-1, 6-10 en DP-2) |
+| Hyprland | **Lua**: `hyprland.lua` (disparador) + `main`, `monitors`, `input`, `bindings`, `looknfeel`, `autostart`, `workspace`, `windowrules`, `envs` |
+| Caelestia | escritorio: `shell.json` (barra, launcher, dashboard, notificaciones, OSD, bloqueo) |
 | Neovim | LazyVim con extras (dap, neo-tree, java, markdown, terraform, project) |
-| wlogout | layout, iconos y css |
 | mpd / ncmpcpp | config + playlists de radios |
-| satty | `config.toml` |
 | Shell / git | `.bashrc`, `.bash_profile`, `.gitconfig` |
+| `legacy/` | archivo histórico: waybar, wlogout, satty, hyprpaper y los `.conf` de Hyprland. **No se despliega** |
 
 Los archivos del repo llevan prefijos de chezmoi: `dot_` → `.` (`dot_bashrc` →
 `~/.bashrc`), `executable_` → permiso `+x`, `private_` → `0600`.
@@ -73,8 +72,10 @@ Cada era es un tag inmutable `vN-AAAA-MM-DD`:
 | 0 | `v0-2026-06-22` | configuración base importada al repo |
 | 1 | `v1-2026-10-27` | estado real antes del pulido |
 | 2 | `v2-2026-10-27` | Hyprland de `.conf` a Lua (rama `pulido-entorno`) |
+| 3 | `v3-2026-10-29` | escritorio Caelestia (rama `caelestia`) |
 
 Detalle de la migración a Lua: [`docs/hyprland-lua.md`](docs/hyprland-lua.md).
+Detalle del escritorio Caelestia: [`docs/caelestia.md`](docs/caelestia.md).
 
 Usar una era antigua:
 
