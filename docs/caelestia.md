@@ -90,6 +90,30 @@ La shell se arranca desde `autostart.lua` con `caelestia shell -d`.
 
 ---
 
+## Espacios tipo macOS (`spaces.lua`)
+
+`SUPER+F` convierte la ventana activa en un «espacio» al estilo del botón verde
+de macOS: la mueve a un special workspace (`special:space1..9`), la maximiza y
+lo muestra. Otra pulsación la devuelve a su workspace original.
+
+| Atajo | Acción |
+|---|---|
+| `SUPER+F` | crear o cerrar el espacio de la ventana activa |
+| `SUPER+SHIFT+F` | pantalla completa clásica |
+| `SUPER+ALT+←/→` | espacio anterior / siguiente |
+
+Detalles de comportamiento:
+
+- Solo se ve un espacio a la vez: son *special workspaces*, no workspaces reales.
+- Al navegar se saltan los espacios vacíos (ventana cerrada).
+- El workspace de origen se recuerda en memoria por dirección de ventana. Si se
+  recarga Hyprland con una ventana dentro de un espacio, al salir vuelve al
+  workspace activo del monitor.
+- `Ctrl+←/→` **no** se usa a propósito: rompería la navegación por palabras en
+  terminales y editores.
+- En la barra, los espacios aparecen con el icono configurado en
+  `bar.workspaces.specialWorkspaceIcons` (una estrella).
+
 ## Rollback
 
 Volver a la pila de la era 2:

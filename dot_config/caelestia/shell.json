@@ -1,10 +1,19 @@
 {
   "general": {
     "apps": {
-      "terminal": ["ghostty", "-e"],
-      "explorer": ["dolphin"],
-      "playback": ["mpv"],
-      "audio": ["pavucontrol"]
+      "terminal": [
+        "ghostty",
+        "-e"
+      ],
+      "explorer": [
+        "dolphin"
+      ],
+      "playback": [
+        "mpv"
+      ],
+      "audio": [
+        "pavucontrol"
+      ]
     },
     "idle": {
       "lockBeforeSleep": true,
@@ -40,12 +49,30 @@
       "showIcon": true
     },
     "statusIcons": [
-      { "id": "lockStatus", "enabled": true },
-      { "id": "audio", "enabled": true },
-      { "id": "microphone", "enabled": true },
-      { "id": "network", "enabled": true },
-      { "id": "bluetooth", "enabled": true },
-      { "id": "battery", "enabled": true }
+      {
+        "id": "lockStatus",
+        "enabled": true
+      },
+      {
+        "id": "audio",
+        "enabled": true
+      },
+      {
+        "id": "microphone",
+        "enabled": true
+      },
+      {
+        "id": "network",
+        "enabled": true
+      },
+      {
+        "id": "bluetooth",
+        "enabled": true
+      },
+      {
+        "id": "battery",
+        "enabled": true
+      }
     ],
     "workspaces": {
       "displayType": "Text",
@@ -55,7 +82,45 @@
       "showWindows": true,
       "label": "",
       "occupiedLabel": "",
-      "activeLabel": ""
+      "activeLabel": "",
+      "specialWorkspaceIcons": [
+        {
+          "name": "space1",
+          "icon": "star"
+        },
+        {
+          "name": "space2",
+          "icon": "star"
+        },
+        {
+          "name": "space3",
+          "icon": "star"
+        },
+        {
+          "name": "space4",
+          "icon": "star"
+        },
+        {
+          "name": "space5",
+          "icon": "star"
+        },
+        {
+          "name": "space6",
+          "icon": "star"
+        },
+        {
+          "name": "space7",
+          "icon": "star"
+        },
+        {
+          "name": "space8",
+          "icon": "star"
+        },
+        {
+          "name": "space9",
+          "icon": "star"
+        }
+      ]
     }
   },
   "dashboard": {
@@ -92,13 +157,34 @@
   "utilities": {
     "enabled": true,
     "quickToggles": [
-      { "id": "wifi", "enabled": true },
-      { "id": "bluetooth", "enabled": true },
-      { "id": "mic", "enabled": true },
-      { "id": "settings", "enabled": true },
-      { "id": "gameMode", "enabled": true },
-      { "id": "dnd", "enabled": true },
-      { "id": "vpn", "enabled": false }
+      {
+        "id": "wifi",
+        "enabled": true
+      },
+      {
+        "id": "bluetooth",
+        "enabled": true
+      },
+      {
+        "id": "mic",
+        "enabled": true
+      },
+      {
+        "id": "settings",
+        "enabled": true
+      },
+      {
+        "id": "gameMode",
+        "enabled": true
+      },
+      {
+        "id": "dnd",
+        "enabled": true
+      },
+      {
+        "id": "vpn",
+        "enabled": false
+      }
     ]
   },
   "services": {

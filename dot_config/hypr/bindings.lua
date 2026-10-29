@@ -13,6 +13,7 @@
 -- =====================================================================
 -- Definimos la tecla Windows/Command como modificador principal
 local mainMod = "SUPER"
+local spaces   = require("spaces")
 
 -- =====================================================================
 -- APLICACIONES NATIVAS DEL ENTORNO
@@ -35,7 +36,8 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("dolphin"))            -- Super + E p
 -- GESTIÓN Y ESTADO DE VENTANA
 -- =====================================================================
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())                 -- Super + Q para cerrar la ventana enfocada
-hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())            -- Super + F para alternar pantalla completa
+hl.bind(mainMod .. " + F", function() spaces.toggle() end)          -- Super + F: espacio tipo macOS (special workspace)
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen())      -- Super + Shift + F: pantalla completa clásica
 -- bind = $mainMod SHIFT, SPACE, togglefloating
 -- hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))   -- Super + Shift + Espacio para alternar modo flotante
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())                -- Modo Pseudo para el diseño Dwindle
@@ -161,6 +163,8 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 --======================================================================
 -- MOVERSE ENTRE ESCRITORIOS
 --======================================================================
+hl.bind("SUPER + ALT + left",  function() spaces.cycle(-1) end)     -- Espacio anterior
+hl.bind("SUPER + ALT + right", function() spaces.cycle(1) end)      -- Espacio siguiente
 hl.bind(mainMod .. " + CTRL + left",  hl.dsp.focus({ workspace = "m-1" }))
 hl.bind(mainMod .. " + CTRL + right", hl.dsp.focus({ workspace = "m+1" }))
 

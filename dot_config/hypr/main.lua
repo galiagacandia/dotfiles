@@ -34,6 +34,7 @@ require("looknfeel")
 require("autostart")
 require("workspace")
 require("windowrules")
+require("spaces")
 
 -- envs.lua existe pero NO se carga: envs.conf nunca estuvo incluido en el
 -- source de hyprland.conf, asi que no formaba parte de la config activa.
