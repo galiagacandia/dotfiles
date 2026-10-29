@@ -40,7 +40,8 @@ hl.bind(mainMod .. " + F", function() spaces.toggle() end)          -- Super + F
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen())      -- Super + Shift + F: pantalla completa clásica
 -- bind = $mainMod SHIFT, SPACE, togglefloating
 -- hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))   -- Super + Shift + Espacio para alternar modo flotante
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())                -- Modo Pseudo para el diseño Dwindle
+-- bind = $mainMod, P, pseudo   (era 2: en layout master pseudo solo confunde)
+hl.bind(mainMod .. " + P", hl.dsp.window.float({ action = "toggle" }))  -- Alternar ventana flotante
 -- bind = SUPER, J, layoutmsg, orientationnext
 -- hl.bind("SUPER + J", hl.dsp.layout("orientationnext"))
 -- bind = SUPER, H, layoutmsg, orientationleft

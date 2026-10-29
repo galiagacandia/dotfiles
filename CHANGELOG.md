@@ -27,8 +27,6 @@ Propuestas **no aplicadas**, sin era asignada todavía.
 
 - [ ] Activar `envs.lua` (`require("envs")` en `main.lua`) si se quieren las variables
       NVIDIA en el proceso. Requiere reiniciar la sesión.
-- [ ] `Super+P`: `pseudo` no aplica al layout `master`; reasignar a `togglefloating`
-      (que hoy no tiene atajo).
 - [ ] `windowrules.lua`: la regla de Spotify es case-sensitive y la clase real es
       `spotify`; revisar `^(Spotify)$`.
 - [ ] Mover a `windowrules.lua` las dos reglas de scroll inline que hoy están en
