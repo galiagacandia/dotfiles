@@ -92,32 +92,37 @@ La shell se arranca desde `autostart.lua` con `caelestia shell -d`.
 
 ## Espacios tipo macOS (`spaces.lua`)
 
-`SUPER+F` mueve la ventana activa a un workspace dedicado (11–15) y te lleva a
-él; otra pulsación la devuelve a su workspace original.
+`SUPER+F` convierte la ventana activa en un espacio: la mueve a un workspace
+dedicado, la pone en **fullscreen** y te lleva a él. Otra pulsación la devuelve
+a su workspace original.
 
 | Atajo | Acción |
 |---|---|
 | `SUPER+F` | crear o cerrar el espacio de la ventana activa |
-| `SUPER+ALT+←/→` | espacio anterior / siguiente |
+| `SUPER+CTRL+←/→` | recorrer la secuencia del monitor (workspaces + espacios) |
+
+Secuencia por monitor:
+
+```
+DP-1:  1 → 2 → 3 → 4 → 5 → 11 → 12 → 13 → 14 → 15 → 1
+DP-2:  6 → 7 → 8 → 9 → 10 → 16 → 17 → 18 → 19 → 20 → 6
+```
 
 Detalles:
 
-- Se usan **workspaces reales**, no *special workspaces*. En Hyprland 0.57 los
-  special tienen `id: null` y la barra de Caelestia los indexa por id, así que
-  no podía mostrarlos.
-- **Cinco espacios por monitor**, con reglas en `workspace.lua`:
-  DP-1 → 11–15, DP-2 → 16–20.
-- La barra pagina en grupos de cinco: en DP-1 muestra `11 12 13 14 15` y en
-  DP-2 `16 17 18 19 20`, con el espacio actual resaltado. Ese es el indicador.
-- No se fuerza fullscreen: la ventana se mosaica y ocupa el espacio, y la barra
-  sigue visible (con fullscreen real, Caelestia la oculta).
-- Al navegar se saltan los espacios vacíos.
+- Se usan **workspaces reales**, no *special workspaces*: en Hyprland 0.57 los
+  special tienen `id: null` y la barra de Caelestia los indexa por id.
+- Cinco espacios por monitor con reglas en `workspace.lua` (11–15 / 16–20).
+- La ventana va en **fullscreen real** (`fullscreen = 2`), así Caelestia oculta
+  la barra igual que macOS oculta la barra de menús. Ese es el efecto de
+  «pantalla nueva».
+- Como la barra desaparece, al entrar o cambiar de espacio se muestra un
+  **toast** con el número (`toaster info "Espacio N"`).
+- Los espacios vacíos se saltan al navegar.
 - El workspace de origen se recuerda en memoria por dirección de ventana; si se
-  recarga Hyprland, al salir se vuelve al workspace activo del monitor.
+  recarga Hyprland, al salir se vuelve al workspace base del monitor (1 o 6).
 - `Ctrl+←/→` no se usa a propósito: rompería la navegación por palabras en
   terminales y editores.
-- Cada monitor tiene su propio juego de espacios: `SUPER+F` crea en el monitor
-  activo y `SUPER+ALT+←/→` cicla solo los de ese monitor.
 
 ## Rollback
 

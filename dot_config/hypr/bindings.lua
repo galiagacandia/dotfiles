@@ -163,10 +163,8 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 --======================================================================
 -- MOVERSE ENTRE ESCRITORIOS
 --======================================================================
-hl.bind("SUPER + ALT + left",  function() spaces.cycle(-1) end)     -- Espacio anterior
-hl.bind("SUPER + ALT + right", function() spaces.cycle(1) end)      -- Espacio siguiente
-hl.bind(mainMod .. " + CTRL + left",  hl.dsp.focus({ workspace = "m-1" }))
-hl.bind(mainMod .. " + CTRL + right", hl.dsp.focus({ workspace = "m+1" }))
+hl.bind(mainMod .. " + CTRL + left",  function() spaces.navigate(-1) end)  -- Secuencia unificada: workspaces + espacios
+hl.bind(mainMod .. " + CTRL + right", function() spaces.navigate(1) end)
 
 
 -- =====================================================================

@@ -2,28 +2,28 @@
 -- spaces.lua — "espacios" tipo macOS con workspaces dedicados
 --
 -- SUPER+F          crea/cierra un espacio para la ventana activa
--- SUPER+ALT+left   espacio anterior (dentro del monitor actual)
--- SUPER+ALT+right  espacio siguiente (dentro del monitor actual)
+-- SUPER+CTRL+left  anterior en la secuencia del monitor
+-- SUPER+CTRL+right siguiente en la secuencia del monitor
 --
 -- Reparto por monitor (5 por monitor):
---   DP-1 -> 11..15
---   DP-2 -> 16..20
+--   DP-1 -> normales 1..5   + espacios 11..15
+--   DP-2 -> normales 6..10  + espacios 16..20
 -- Las reglas de monitor viven en workspace.lua.
+--
+-- Un espacio es un workspace real con la ventana en fullscreen: asi la
+-- barra de Caelestia se oculta (fullscreen > 1) y se comporta como los
+-- Spaces de macOS. Como la barra desaparece, al entrar o cambiar de
+-- espacio se muestra un toast con el numero.
 --
 -- Se usan workspaces reales (no special) porque la barra de Caelestia
 -- indexa los special por id y en Hyprland 0.57 tienen id nulo.
--- La barra pagina en grupos de 5, asi que muestra el grupo del monitor
--- activo con el espacio actual resaltado.
---
--- Sin estado persistente: los espacios ocupados se deducen de las
--- ventanas. Solo se recuerda el workspace de origen (en memoria).
 -- =====================================================================
 
 local M = {}
 
 local RANGES = {
-    { monitor = "DP-1", first = 11, last = 15, home = 1 },
-    { monitor = "DP-2", first = 16, last = 20, home = 6 },
+    { monitor = "DP-1", home = 1, first = 11, last = 15 },
+    { monitor = "DP-2", home = 6, first = 16, last = 20 },
 }
 
 -- address de ventana -> id del workspace donde estaba antes
@@ -74,14 +74,24 @@ local function occupied(range)
     return used
 end
 
-local function sorted_spaces(range, used)
+-- Secuencia del monitor: workspaces normales + espacios ocupados
+local function monitor_slots(range)
     local list = {}
+    for id = range.home, range.home + 4 do
+        list[#list + 1] = id
+    end
+
+    local used = occupied(range)
     for id = range.first, range.last do
         if used[id] then
             list[#list + 1] = id
         end
     end
     return list
+end
+
+local function toast(id)
+    hl.exec_cmd('qs -c caelestia ipc call toaster info "Espacio ' .. id .. '" "" ""')
 end
 
 function M.toggle()
@@ -94,10 +104,13 @@ function M.toggle()
 
     local current = space_of(w)
     if current then
-        -- salir: volver al workspace de origen y enfocarlo
+        -- salir: quitar fullscreen, volver al origen y enfocarlo
         local target = origins[w.address] or range.home
 
         origins[w.address] = nil
+        if w.fullscreen > 1 then
+            hl.dispatch(hl.dsp.window.fullscreen())
+        end
         hl.dispatch(hl.dsp.window.move({ workspace = target }))
         hl.dispatch(hl.dsp.focus({ workspace = target }))
         return
@@ -119,23 +132,33 @@ function M.toggle()
     origins[w.address] = w.workspace and w.workspace.id or range.home
     hl.dispatch(hl.dsp.window.move({ workspace = target }))
     hl.dispatch(hl.dsp.focus({ workspace = target }))
+
+    -- fullscreen real: la barra se oculta y queda como un Space de macOS
+    if w.fullscreen == 0 then
+        hl.dispatch(hl.dsp.window.fullscreen())
+    end
+
+    toast(target)
 end
 
-function M.cycle(dir)
+function M.navigate(dir)
     local range = active_range()
-    local list = sorted_spaces(range, occupied(range))
-    if #list == 0 then
-        return
-    end
+    local list = monitor_slots(range)
 
     local current = hl.get_active_workspace()
     local current_id = current and current.id
 
-    local pos = 0
+    local pos
     for i, id in ipairs(list) do
         if id == current_id then
             pos = i
+            break
         end
+    end
+
+    if not pos then
+        hl.dispatch(hl.dsp.focus({ workspace = list[1] }))
+        return
     end
 
     local next_pos = pos + dir
@@ -146,7 +169,12 @@ function M.cycle(dir)
         next_pos = 1
     end
 
-    hl.dispatch(hl.dsp.focus({ workspace = list[next_pos] }))
+    local target = list[next_pos]
+    hl.dispatch(hl.dsp.focus({ workspace = target }))
+
+    if in_any_range(target) then
+        toast(target)
+    end
 end
 
 return M
