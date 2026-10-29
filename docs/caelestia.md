@@ -102,11 +102,13 @@ La shell se arranca desde `autostart.lua` con `caelestia shell -d`.
 
 Detalles:
 
-- Se usan **workspaces reales** 11–15, no *special workspaces*. En Hyprland 0.57
-  los special tienen `id: null` y la barra de Caelestia los indexa por id, así
-  que no podía mostrarlos.
-- La barra pagina en grupos de cinco: al estar en un espacio muestra
-  `11 12 13 14 15` con el activo resaltado. Ese es el indicador.
+- Se usan **workspaces reales**, no *special workspaces*. En Hyprland 0.57 los
+  special tienen `id: null` y la barra de Caelestia los indexa por id, así que
+  no podía mostrarlos.
+- **Cinco espacios por monitor**, con reglas en `workspace.lua`:
+  DP-1 → 11–15, DP-2 → 16–20.
+- La barra pagina en grupos de cinco: en DP-1 muestra `11 12 13 14 15` y en
+  DP-2 `16 17 18 19 20`, con el espacio actual resaltado. Ese es el indicador.
 - No se fuerza fullscreen: la ventana se mosaica y ocupa el espacio, y la barra
   sigue visible (con fullscreen real, Caelestia la oculta).
 - Al navegar se saltan los espacios vacíos.
@@ -114,8 +116,8 @@ Detalles:
   recarga Hyprland, al salir se vuelve al workspace activo del monitor.
 - `Ctrl+←/→` no se usa a propósito: rompería la navegación por palabras en
   terminales y editores.
-- Los workspaces 11–15 no tienen regla de monitor: viven donde se crearon, así
-  que navegar a un espacio de otro monitor cambia de monitor.
+- Cada monitor tiene su propio juego de espacios: `SUPER+F` crea en el monitor
+  activo y `SUPER+ALT+←/→` cicla solo los de ese monitor.
 
 ## Rollback
 

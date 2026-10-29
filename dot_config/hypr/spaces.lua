@@ -2,31 +2,57 @@
 -- spaces.lua — "espacios" tipo macOS con workspaces dedicados
 --
 -- SUPER+F          crea/cierra un espacio para la ventana activa
--- SUPER+ALT+left   espacio anterior
--- SUPER+ALT+right  espacio siguiente
+-- SUPER+ALT+left   espacio anterior (dentro del monitor actual)
+-- SUPER+ALT+right  espacio siguiente (dentro del monitor actual)
 --
--- Los espacios son workspaces reales 11..15. Se usan ids reales (no
--- special workspaces) porque la barra de Caelestia indexa por id y los
--- special tienen id nulo en Hyprland 0.57: no se podrian mostrar.
+-- Reparto por monitor (5 por monitor):
+--   DP-1 -> 11..15
+--   DP-2 -> 16..20
+-- Las reglas de monitor viven en workspace.lua.
 --
--- La barra pagina en grupos de 5, asi que al entrar en el 11 muestra
--- 11..15 con el activo resaltado.
+-- Se usan workspaces reales (no special) porque la barra de Caelestia
+-- indexa los special por id y en Hyprland 0.57 tienen id nulo.
+-- La barra pagina en grupos de 5, asi que muestra el grupo del monitor
+-- activo con el espacio actual resaltado.
 --
 -- Sin estado persistente: los espacios ocupados se deducen de las
--- ventanas. Solo se recuerda el workspace de origen (en memoria) para
--- devolver la ventana al salir.
+-- ventanas. Solo se recuerda el workspace de origen (en memoria).
 -- =====================================================================
 
 local M = {}
 
-local FIRST = 11
-local LAST = 15
+local RANGES = {
+    { monitor = "DP-1", first = 11, last = 15, home = 1 },
+    { monitor = "DP-2", first = 16, last = 20, home = 6 },
+}
 
 -- address de ventana -> id del workspace donde estaba antes
 local origins = {}
 
-local function is_space(id)
-    return id and id >= FIRST and id <= LAST
+local function range_for(monitor_name)
+    for _, r in ipairs(RANGES) do
+        if r.monitor == monitor_name then
+            return r
+        end
+    end
+    return RANGES[1]
+end
+
+local function active_range()
+    local monitor = hl.get_active_monitor()
+    return range_for(monitor and monitor.name or RANGES[1].monitor)
+end
+
+local function in_any_range(id)
+    if not id then
+        return false
+    end
+    for _, r in ipairs(RANGES) do
+        if id >= r.first and id <= r.last then
+            return true
+        end
+    end
+    return false
 end
 
 local function space_of(window)
@@ -34,38 +60,28 @@ local function space_of(window)
     if not ws then
         return nil
     end
-    return is_space(ws.id) and ws.id or nil
+    return in_any_range(ws.id) and ws.id or nil
 end
 
-local function occupied()
+local function occupied(range)
     local used = {}
     for _, w in ipairs(hl.get_windows()) do
         local id = space_of(w)
-        if id then
+        if id and id >= range.first and id <= range.last then
             used[id] = true
         end
     end
     return used
 end
 
-local function sorted_spaces(used)
+local function sorted_spaces(range, used)
     local list = {}
-    for id = FIRST, LAST do
+    for id = range.first, range.last do
         if used[id] then
             list[#list + 1] = id
         end
     end
     return list
-end
-
--- Workspace real debajo del special/monitor actual (nunca el special).
-local function fallback_workspace()
-    local monitor = hl.get_active_monitor()
-    local ws = monitor and monitor.active_workspace
-    if ws and ws.id and not is_space(ws.id) then
-        return ws.id
-    end
-    return 1
 end
 
 function M.toggle()
@@ -74,10 +90,12 @@ function M.toggle()
         return
     end
 
+    local range = active_range()
+
     local current = space_of(w)
     if current then
         -- salir: volver al workspace de origen y enfocarlo
-        local target = origins[w.address] or fallback_workspace()
+        local target = origins[w.address] or range.home
 
         origins[w.address] = nil
         hl.dispatch(hl.dsp.window.move({ workspace = target }))
@@ -85,10 +103,10 @@ function M.toggle()
         return
     end
 
-    -- entrar: primer espacio libre
-    local used = occupied()
+    -- entrar: primer espacio libre del monitor actual
+    local used = occupied(range)
     local target
-    for id = FIRST, LAST do
+    for id = range.first, range.last do
         if not used[id] then
             target = id
             break
@@ -98,13 +116,14 @@ function M.toggle()
         return
     end
 
-    origins[w.address] = w.workspace and w.workspace.id or fallback_workspace()
+    origins[w.address] = w.workspace and w.workspace.id or range.home
     hl.dispatch(hl.dsp.window.move({ workspace = target }))
     hl.dispatch(hl.dsp.focus({ workspace = target }))
 end
 
 function M.cycle(dir)
-    local list = sorted_spaces(occupied())
+    local range = active_range()
+    local list = sorted_spaces(range, occupied(range))
     if #list == 0 then
         return
     end
