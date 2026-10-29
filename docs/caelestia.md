@@ -96,6 +96,7 @@ Volver a la pila de la era 2:
 
 ```bash
 pkill -x qs
+sudo pacman -S --needed waybar dunst hyprpaper wlogout satty walker
 cp -r "$(chezmoi source-path)/legacy/config/waybar"  ~/.config/waybar
 cp -r "$(chezmoi source-path)/legacy/config/wlogout" ~/.config/wlogout
 cp    "$(chezmoi source-path)/legacy/config/hypr/hyprpaper.conf" ~/.config/hypr/

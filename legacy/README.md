@@ -17,7 +17,11 @@ Contiene lo que quedó fuera de uso al adoptar Caelestia como escritorio (era 3)
 
 ## Restaurar waybar + dunst + hyprpaper
 
+> Los paquetes se desinstalaron al cerrar la era 3 (`waybar`, `dunst`,
+> `hyprpaper`, `wlogout`, `satty`, `walker`). Hay que reinstalarlos primero.
+
 ```bash
+sudo pacman -S --needed waybar dunst hyprpaper wlogout satty walker
 cp -r "$(chezmoi source-path)/legacy/config/waybar"  ~/.config/waybar
 cp -r "$(chezmoi source-path)/legacy/config/wlogout" ~/.config/wlogout
 cp    "$(chezmoi source-path)/legacy/config/hypr/hyprpaper.conf" ~/.config/hypr/
@@ -33,6 +37,7 @@ ahí (`waybar`, `hyprpaper`, `dunst`, `elephant`, `walker`).
 ## Restaurar satty
 
 ```bash
+sudo pacman -S --needed satty
 cp -r "$(chezmoi source-path)/legacy/config/satty" ~/.config/satty
 ```
 
