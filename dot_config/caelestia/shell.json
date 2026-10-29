@@ -1,126 +1,59 @@
 {
-  "general": {
-    "apps": {
-      "terminal": [
-        "ghostty",
-        "-e"
-      ],
-      "explorer": [
-        "dolphin"
-      ],
-      "playback": [
-        "mpv"
-      ],
-      "audio": [
-        "pavucontrol"
-      ]
-    },
-    "idle": {
-      "lockBeforeSleep": true,
-      "inhibitWhenAudio": true,
-      "timeouts": [
-        {
-          "timeout": 600,
-          "idleAction": "lock",
-          "inhibitWhenAudio": true,
-          "respectInhibitors": true
-        },
-        {
-          "timeout": 900,
-          "idleAction": "dpms off",
-          "returnAction": "dpms on"
-        }
-      ]
+  "appearance": {
+    "transparency": {
+      "enabled": true
     }
   },
   "background": {
     "enabled": true,
-    "wallpaperEnabled": true,
     "visualiser": {
-      "enabled": true,
-      "autoHide": true
-    }
+      "autoHide": true,
+      "enabled": true
+    },
+    "wallpaperEnabled": true
   },
   "bar": {
-    "persistent": true,
-    "showOnHover": true,
     "clock": {
       "showDate": true,
       "showIcon": true
     },
+    "persistent": true,
+    "showOnHover": true,
     "statusIcons": [
       {
-        "id": "lockStatus",
-        "enabled": true
+        "enabled": true,
+        "id": "lockStatus"
       },
       {
-        "id": "audio",
-        "enabled": true
+        "enabled": true,
+        "id": "audio"
       },
       {
-        "id": "microphone",
-        "enabled": true
+        "enabled": true,
+        "id": "microphone"
       },
       {
-        "id": "network",
-        "enabled": true
+        "enabled": true,
+        "id": "network"
       },
       {
-        "id": "bluetooth",
-        "enabled": true
+        "enabled": true,
+        "id": "bluetooth"
       },
       {
-        "id": "battery",
-        "enabled": true
+        "enabled": true,
+        "id": "battery"
       }
     ],
     "workspaces": {
-      "displayType": "Text",
-      "shown": 5,
-      "perMonitor": true,
       "activeIndicator": true,
-      "showWindows": true,
+      "activeLabel": "",
+      "displayType": "Text",
       "label": "",
       "occupiedLabel": "",
-      "activeLabel": "",
-      "specialWorkspaceIcons": [
-        {
-          "name": "space1",
-          "icon": "star"
-        },
-        {
-          "name": "space2",
-          "icon": "star"
-        },
-        {
-          "name": "space3",
-          "icon": "star"
-        },
-        {
-          "name": "space4",
-          "icon": "star"
-        },
-        {
-          "name": "space5",
-          "icon": "star"
-        },
-        {
-          "name": "space6",
-          "icon": "star"
-        },
-        {
-          "name": "space7",
-          "icon": "star"
-        },
-        {
-          "name": "space8",
-          "icon": "star"
-        },
-        {
-          "name": "space9",
-          "icon": "star"
-        }
-      ]
+      "perMonitor": true,
+      "showWindows": true,
+      "shown": 5
     }
   },
   "dashboard": {
@@ -129,24 +62,74 @@
     "showPerformance": true,
     "showWeather": true
   },
+  "general": {
+    "apps": {
+      "audio": [
+        "pavucontrol"
+      ],
+      "explorer": [
+        "dolphin"
+      ],
+      "playback": [
+        "mpv"
+      ],
+      "terminal": [
+        "ghostty",
+        "-e"
+      ]
+    },
+    "idle": {
+      "inhibitWhenAudio": true,
+      "lockBeforeSleep": true,
+      "timeouts": [
+        {
+          "enabled": true,
+          "idleAction": "lock",
+          "inhibitWhenAudio": true,
+          "inhibitWhenCharging": false,
+          "respectInhibitors": true,
+          "timeout": 600
+        },
+        {
+          "enabled": true,
+          "idleAction": "dpms off",
+          "inhibitWhenAudio": false,
+          "inhibitWhenCharging": false,
+          "respectInhibitors": true,
+          "returnAction": "dpms on",
+          "timeout": 900
+        }
+      ]
+    }
+  },
   "launcher": {
     "enabled": true,
     "vimKeybinds": false
   },
   "lock": {
-    "enabled": true,
-    "useWallpaper": true,
     "enableFprint": false,
-    "enableHowdy": false
+    "enableHowdy": false,
+    "enabled": true,
+    "useWallpaper": true
   },
   "notifs": {
     "expire": true,
     "fullscreen": "On"
   },
   "osd": {
-    "enabled": true,
     "enableBrightness": true,
-    "enableMicrophone": true
+    "enableMicrophone": true,
+    "enabled": true
+  },
+  "paths": {
+    "wallpaperDir": "~/Pictures"
+  },
+  "services": {
+    "audioIncrement": 0.05,
+    "brightnessIncrement": 0.05,
+    "clockFormat": "TwentyFourHour",
+    "defaultPlayer": "Spotify",
+    "weatherLocation": "La Paz"
   },
   "session": {
     "enabled": true
@@ -158,42 +141,33 @@
     "enabled": true,
     "quickToggles": [
       {
-        "id": "wifi",
-        "enabled": true
+        "enabled": true,
+        "id": "wifi"
       },
       {
-        "id": "bluetooth",
-        "enabled": true
+        "enabled": true,
+        "id": "bluetooth"
       },
       {
-        "id": "mic",
-        "enabled": true
+        "enabled": true,
+        "id": "mic"
       },
       {
-        "id": "settings",
-        "enabled": true
+        "enabled": true,
+        "id": "settings"
       },
       {
-        "id": "gameMode",
-        "enabled": true
+        "enabled": true,
+        "id": "gameMode"
       },
       {
-        "id": "dnd",
-        "enabled": true
+        "enabled": true,
+        "id": "dnd"
       },
       {
-        "id": "vpn",
-        "enabled": false
+        "enabled": false,
+        "id": "vpn"
       }
     ]
-  },
-  "services": {
-    "weatherLocation": "La Paz",
-    "defaultPlayer": "Spotify",
-    "audioIncrement": 0.05,
-    "brightnessIncrement": 0.05
-  },
-  "paths": {
-    "wallpaperDir": "~/Pictures"
   }
 }

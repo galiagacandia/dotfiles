@@ -92,27 +92,30 @@ La shell se arranca desde `autostart.lua` con `caelestia shell -d`.
 
 ## Espacios tipo macOS (`spaces.lua`)
 
-`SUPER+F` convierte la ventana activa en un «espacio» al estilo del botón verde
-de macOS: la mueve a un special workspace (`special:space1..9`), la maximiza y
-lo muestra. Otra pulsación la devuelve a su workspace original.
+`SUPER+F` mueve la ventana activa a un workspace dedicado (11–15) y te lleva a
+él; otra pulsación la devuelve a su workspace original.
 
 | Atajo | Acción |
 |---|---|
 | `SUPER+F` | crear o cerrar el espacio de la ventana activa |
-| `SUPER+SHIFT+F` | pantalla completa clásica |
 | `SUPER+ALT+←/→` | espacio anterior / siguiente |
 
-Detalles de comportamiento:
+Detalles:
 
-- Solo se ve un espacio a la vez: son *special workspaces*, no workspaces reales.
-- Al navegar se saltan los espacios vacíos (ventana cerrada).
-- El workspace de origen se recuerda en memoria por dirección de ventana. Si se
-  recarga Hyprland con una ventana dentro de un espacio, al salir vuelve al
-  workspace activo del monitor.
-- `Ctrl+←/→` **no** se usa a propósito: rompería la navegación por palabras en
+- Se usan **workspaces reales** 11–15, no *special workspaces*. En Hyprland 0.57
+  los special tienen `id: null` y la barra de Caelestia los indexa por id, así
+  que no podía mostrarlos.
+- La barra pagina en grupos de cinco: al estar en un espacio muestra
+  `11 12 13 14 15` con el activo resaltado. Ese es el indicador.
+- No se fuerza fullscreen: la ventana se mosaica y ocupa el espacio, y la barra
+  sigue visible (con fullscreen real, Caelestia la oculta).
+- Al navegar se saltan los espacios vacíos.
+- El workspace de origen se recuerda en memoria por dirección de ventana; si se
+  recarga Hyprland, al salir se vuelve al workspace activo del monitor.
+- `Ctrl+←/→` no se usa a propósito: rompería la navegación por palabras en
   terminales y editores.
-- En la barra, los espacios aparecen con el icono configurado en
-  `bar.workspaces.specialWorkspaceIcons` (una estrella).
+- Los workspaces 11–15 no tienen regla de monitor: viven donde se crearon, así
+  que navegar a un espacio de otro monitor cambia de monitor.
 
 ## Rollback
 
