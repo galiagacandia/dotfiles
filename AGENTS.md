@@ -71,8 +71,9 @@ hyprctl -j binds | jq length                              # 62 en la era 2
 - Tags de era: `vN-AAAA-MM-DD` (fecha de creación), anotados e inmutables.
 - Toda era actualiza `CHANGELOG.md` **antes** de crear su tag.
 - Tags publicados no se mueven: si algo cambia, se crea otra era.
-- `main` y `pulido-entorno` se mantienen sincronizadas al cerrar una era
-  (merge `--no-ff` o `--ff-only` según corresponda).
+- **`main` está congelada en `v1-2026-10-27`** y solo recibe trabajo cuando el
+  pulido del entorno esté terminado. Las eras intermedias se taggean sobre
+  `pulido-entorno` (así está `v2-2026-10-27`); no se fusionan a `main` una por una.
 
 ---
 
