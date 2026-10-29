@@ -116,8 +116,6 @@ Detalles:
 - La ventana va en **fullscreen real** (`fullscreen = 2`), así Caelestia oculta
   la barra igual que macOS oculta la barra de menús. Ese es el efecto de
   «pantalla nueva».
-- Como la barra desaparece, al entrar o cambiar de espacio se muestra un
-  **toast** con el número (`toaster info "Espacio N"`).
 - Los espacios vacíos se saltan al navegar.
 - El workspace de origen se recuerda en memoria por dirección de ventana; si se
   recarga Hyprland, al salir se vuelve al workspace base del monitor (1 o 6).

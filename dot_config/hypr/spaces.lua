@@ -12,8 +12,7 @@
 --
 -- Un espacio es un workspace real con la ventana en fullscreen: asi la
 -- barra de Caelestia se oculta (fullscreen > 1) y se comporta como los
--- Spaces de macOS. Como la barra desaparece, al entrar o cambiar de
--- espacio se muestra un toast con el numero.
+-- Spaces de macOS.
 --
 -- Se usan workspaces reales (no special) porque la barra de Caelestia
 -- indexa los special por id y en Hyprland 0.57 tienen id nulo.
@@ -90,10 +89,6 @@ local function monitor_slots(range)
     return list
 end
 
-local function toast(id)
-    hl.exec_cmd('qs -c caelestia ipc call toaster info "Espacio ' .. id .. '" "" ""')
-end
-
 function M.toggle()
     local w = hl.get_active_window()
     if not w then
@@ -137,8 +132,6 @@ function M.toggle()
     if w.fullscreen == 0 then
         hl.dispatch(hl.dsp.window.fullscreen())
     end
-
-    toast(target)
 end
 
 function M.navigate(dir)
@@ -171,10 +164,6 @@ function M.navigate(dir)
 
     local target = list[next_pos]
     hl.dispatch(hl.dsp.focus({ workspace = target }))
-
-    if in_any_range(target) then
-        toast(target)
-    end
 end
 
 return M
