@@ -11,6 +11,17 @@
           "--project",
           "dotfiles"
         ]
+      },
+      "pencil": {
+        "type": "local",
+        "command": [
+          "/tmp/.mount_Pen-li2eg0a1/resources/app.asar.unpacked/out/mcp-server-linux-x64",
+          "--app",
+          "desktop",
+          "--agent",
+          "openCodeCLI"
+        ],
+        "disabled": true
       }
     }
   }
