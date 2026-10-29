@@ -25,11 +25,11 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("dolphin"))            -- Super + E p
 -- hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("hyprlauncher"))
 -- bind = $mainMod, SPACE, exec, rofi -show drun
 -- hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("rofi -show drun"))   -- Lanzador de aplicaciones del sistema
-hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("walker"))         -- Lanzador de aplicaciones del sistema
+-- hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("walker"))         -- Lanzador de aplicaciones del sistema (era 2)
 
 -- bind = , Print, exec, grim -g "$(slurp)" - | satty --filename - --fullscreen
 -- hl.bind("Print", hl.dsp.exec_cmd('grim -g "$(slurp)" - | satty --filename - --fullscreen'))
-hl.bind("Print", hl.dsp.exec_cmd('grim -g "$(slurp)" -t ppm - | satty --filename - --fullscreen'))
+-- hl.bind("Print", hl.dsp.exec_cmd('grim -g "$(slurp)" -t ppm - | satty --filename - --fullscreen'))   -- era 2
 
 -- =====================================================================
 -- GESTIÓN Y ESTADO DE VENTANA
@@ -150,7 +150,7 @@ hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("hyprctl reload"))   -- Super
 -- bind = $mainMod SHIFT, E, exit
 -- hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exit())                     -- Super + Shift + E para cerrar sesión e ir al login
 -- Abrir el menú visual de cierre de sesión (Estilo Omarchy / Wayland)
-hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("wlogout -b 2"))
+-- hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("wlogout -b 2"))   -- era 2
 
 -- =====================================================================
 -- CONTROL CON EL RATÓN (Mouse Binds)
@@ -256,3 +256,24 @@ hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("spotify"),              { de
 -- hl.bind("SUPER + H", hl.dsp.exec_cmd("voxtype record toggle"))
 -- bind = SUPER, PERIOD, exec, omarchy-launch-walker -m symbols # Emoji Button
 -- hl.bind("SUPER + PERIOD", hl.dsp.exec_cmd("omarchy-launch-walker -m symbols"))
+
+-- =====================================================================
+-- CAELESTIA (shell del escritorio, era 3)
+-- Los atajos globales los registra la shell con appid "caelestia";
+-- se invocan con hl.dsp.global("caelestia:<nombre>").
+-- =====================================================================
+-- Toque de SUPER (pulsar y soltar sin combinación): abre/cierra el lanzador
+hl.bind("SUPER + SUPER_L", hl.dsp.global("caelestia:launcher"), { release = true })
+hl.bind(mainMod .. " + SPACE", hl.dsp.global("caelestia:launcher"))              -- Lanzador (antes walker)
+hl.bind(mainMod .. " + ESCAPE", hl.dsp.global("caelestia:session"))              -- Menú de sesión (antes wlogout)
+hl.bind(mainMod .. " + D", hl.dsp.global("caelestia:dashboard"))                 -- Dashboard
+hl.bind(mainMod .. " + N", hl.dsp.global("caelestia:sidebar"))                   -- Sidebar de notificaciones
+hl.bind(mainMod .. " + U", hl.dsp.global("caelestia:utilities"))                 -- Utilidades / quick toggles
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("loginctl lock-session"))      -- Bloquear pantalla
+hl.bind("Print", hl.dsp.exec_cmd("caelestia screenshot -r"))                     -- Captura de región
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("caelestia clipboard"))               -- Historial de portapapeles
+hl.bind(mainMod .. " + PERIOD", hl.dsp.exec_cmd("caelestia emoji -p"))           -- Selector de emojis
+hl.bind(mainMod .. " + CTRL + K", hl.dsp.global("caelestia:showall"))            -- Mostrar/ocultar paneles (su default SUPER+K choca con foco arriba)
+hl.bind("CTRL + ALT + C", hl.dsp.exec_cmd("qs -c caelestia ipc call notifs clear")) -- Limpiar notificaciones (default de Caelestia)
+hl.bind(mainMod .. " + COMMA", hl.dsp.global("caelestia:nexus"))                 -- Ajustes de la shell (nexus)
+hl.bind(mainMod .. " + CTRL + R", hl.dsp.exec_cmd("caelestia shell -k; caelestia shell -d; sleep 3; hyprctl reload")) -- Reiniciar la shell (su -r se cuelga; -k/-d + reload limpia binds huérfanos)

@@ -1,0 +1,113 @@
+{
+  "general": {
+    "apps": {
+      "terminal": ["ghostty", "-e"],
+      "explorer": ["dolphin"],
+      "playback": ["mpv"],
+      "audio": ["pavucontrol"]
+    },
+    "idle": {
+      "lockBeforeSleep": true,
+      "inhibitWhenAudio": true,
+      "timeouts": [
+        {
+          "timeout": 600,
+          "idleAction": "lock",
+          "inhibitWhenAudio": true,
+          "respectInhibitors": true
+        },
+        {
+          "timeout": 900,
+          "idleAction": "dpms off",
+          "returnAction": "dpms on"
+        }
+      ]
+    }
+  },
+  "background": {
+    "enabled": true,
+    "wallpaperEnabled": true,
+    "visualiser": {
+      "enabled": true,
+      "autoHide": true
+    }
+  },
+  "bar": {
+    "persistent": true,
+    "showOnHover": true,
+    "clock": {
+      "showDate": true,
+      "showIcon": true
+    },
+    "statusIcons": [
+      { "id": "lockStatus", "enabled": true },
+      { "id": "audio", "enabled": true },
+      { "id": "microphone", "enabled": true },
+      { "id": "network", "enabled": true },
+      { "id": "bluetooth", "enabled": true },
+      { "id": "battery", "enabled": true }
+    ],
+    "workspaces": {
+      "displayType": "Text",
+      "shown": 5,
+      "perMonitor": true,
+      "activeIndicator": true,
+      "showWindows": true,
+      "label": "",
+      "occupiedLabel": "",
+      "activeLabel": ""
+    }
+  },
+  "dashboard": {
+    "enabled": true,
+    "showMedia": true,
+    "showPerformance": true,
+    "showWeather": true
+  },
+  "launcher": {
+    "enabled": true,
+    "vimKeybinds": false
+  },
+  "lock": {
+    "enabled": true,
+    "useWallpaper": true,
+    "enableFprint": false,
+    "enableHowdy": false
+  },
+  "notifs": {
+    "expire": true,
+    "fullscreen": "On"
+  },
+  "osd": {
+    "enabled": true,
+    "enableBrightness": true,
+    "enableMicrophone": true
+  },
+  "session": {
+    "enabled": true
+  },
+  "sidebar": {
+    "enabled": true
+  },
+  "utilities": {
+    "enabled": true,
+    "quickToggles": [
+      { "id": "wifi", "enabled": true },
+      { "id": "bluetooth", "enabled": true },
+      { "id": "mic", "enabled": true },
+      { "id": "settings", "enabled": true },
+      { "id": "gameMode", "enabled": true },
+      { "id": "dnd", "enabled": true },
+      { "id": "vpn", "enabled": false }
+    ]
+  },
+  "services": {
+    "weatherLocation": "La Paz",
+    "defaultPlayer": "Spotify",
+    "audioIncrement": 0.05,
+    "brightnessIncrement": 0.05
+  },
+  "paths": {
+    "wallpaperDir": "~/Pictures"
+  }
+}
