@@ -168,6 +168,9 @@
         "enabled": false,
         "id": "vpn"
       }
-    ]
+    ],
+    "toasts": {
+      "fullscreen": "on"
+    }
   }
 }
